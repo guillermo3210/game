@@ -29,7 +29,7 @@ img {
 }
 
 .header {
-   background-image: url(los-santos-gta-v__xtrafondos.com.jpg);
+   background-image: url( ../img/los-santos-gta-v__xtrafondos.com.jpg);
    background-position: center center ; 
    background-repeat: no-repeat ;
    background-size: cover ;
