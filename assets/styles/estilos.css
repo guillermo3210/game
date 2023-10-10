@@ -161,11 +161,15 @@ h2 {
     display: flex;
     justify-content: space-between;
     
+    
+    
+    
 }
 
 .popular-content img {
     width: 150px;
     border-radius: 30px;
+    
 
 
 }
