@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>gamelang</title>
-  <link rel="stylesheet" href="estilos.css">
+  <title>productos</title>
+  <link rel="stylesheet" href="./assets/styles/estilos.css">
+  <link rel="stylesheet" href="./assets/styles/productos.css">
+
 </head>
+
 <body>
   <header class="header">
     <div class="menu container">
       <a href="#" class="logo">GAMELANG</a>
       <input type="checkbox" id="menu">
       <label for="menu">
-       <img src="icons8-menú-50.png" class="menu-icono" alt="menu">
+        <img src="icons8-menú-50.png" class="menu-icono" alt="menu">
       </label>
       <nav class="navbar">
-          <ul>
-             <li><a href="index.html">inicio</a></li>
-             <li><a href="servicios.html">servicios</a></li>
-             <li><a href="productos.html">productos</a></li>
-             <li><a href="contacto.html">contacto</a></li>
-          </ul>
+        <ul>
+          <li><a href="./index.html">inicio</a></li>
+          <li><a href="./servicios.html">servicios</a></li>
+          <li><a href="#">productos</a></li>
+          <li><a href="contacto.html">contacto</a></li>
+        </ul>
       </nav>
     </div>
 
-    <div class= "header-content container">
+    <div id="titulo_catalogo">
+      <h2>Catalogo de Juegos</h2>
+    </div>
+
+    <!--     <div class= "header-content container">
       <div class= "header-txt">
            <h1> compra tu <span> juego </span> <br> favorito aqui </h1>
            <p>
@@ -36,10 +44,10 @@
             </div>
        </div>
     </div>
-
+ -->
   </header>
 
-  <section class="popular container">
+  <!-- <section class="popular container">
     <h2>juegos populares</h2>
     <div class="popular-content">
       <img src="call-of-duty-black-ops-2-portada_1.jpg_1902800914.jpg" alt="">
@@ -52,92 +60,49 @@
     </div>
 
   </section>
-  <main class="product container">
-    <h2>todos los juegos</h2>
-    <div class="product-content">
-      <div class="product-1">
-        <img src="call-of-duty-black-ops-2-portada_1.jpg_1902800914.jpg" alt="">
-        <div class="product-txt">
-          <h3>call of duty balck ops </h3>
-          <div class="price">
-            <p>$2500</p>
-            <a href="#" class="btn-2">comprar</a>
+   -->
 
-          </div>
+  <main class="product">
+    
+    <div style="display: flex; padding: 1.5rem;">
 
+      <div style="flex: 1; padding-top: 0.5rem; align-items: flex-start;">
+
+        <div style="display: flex; flex-direction: row;" id="contenedor-checkboxes">
+          <!-- Aquí se dibujan los checkboxes según las categorías de los eventos que vienen en data.js -->
         </div>
 
       </div>
-      <div class="product-1">
-        <img src="fortnite-2982970.jpg" alt="">
-        <div class="product-txt">
-          <h3>fortnite </h3>
-          <div class="price">
-            <p>$2500</p>
-            <a href="#" class="btn-2">comprar</a>
 
-          </div>
+      <div style="flex: 0.9; align-items: flex-start; padding-top: 0.5rem;">
 
+        <div style="display: flex; flex-direction: row;">
+          <input id="texto"
+            style="width: 100%; padding: 0.375rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
+            type="text" placeholder="Buscar Juego x Nombre">
         </div>
 
-      </div>
-      <div class="product-1">
-        <img src="diferencias-ea-sports-fc-24-fifa-23-3094778.jpg" alt="">
-        <div class="product-txt">
-          <h3>fifa 24</h3>
-          <div class="price">
-            <p>$2500</p>
-            <a href="#" class="btn-2">comprar</a>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="product-1">
-        <img src="gta.jpg" alt="">
-        <div class="product-txt">
-          <h3>gta 6</h3>
-          <div class="price">
-            <p>$2500</p>
-            <a href="#" class="btn-2">comprar</a>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="product-1">
-        <img src="the-last-of-us-2-remake-.jpg" alt="">
-        <div class="product-txt">
-          <h3>the last of us 2</h3>
-          <div class="price">
-            <p>$2500</p>
-            <a href="#" class="btn-2">comprar</a>
-
-          </div>
-
-        </div>
-
-      </div>
-      <div class="product-1">
-        <img src="uncharted-4-a-thiefs-end-ps4-playstation-4-1.900x.jpg" alt="">
-        <div class="product-txt">
-          <h3>uncharted 4</h3>
-          <div class="price">
-            <p>$2500</p>
-            <a href="#" class="btn-2">comprar</a>
-
-          </div>
-
+        <div id="mensajeNoResultados" style="display: none;">
+          <p>No se encontraron resultados que cumplan con la condición de filtro.</p>
         </div>
 
       </div>
 
     </div>
 
+    
+    <div class="catalogo" id="contenedor_tarjetas">
+
+    </div>
+
   </main>
-  <section class="contact container">
+
+
+  
+
+
+
+  <!--   <section class="contact container">
     <div class="contact-content">
       <h3>suscribete a nuestro blog</h3>
       <form>
@@ -149,6 +114,8 @@
     </div>
 
   </section>
+ -->
+
   <footer class="footer container">
     <div class="link">
       <a href="#" class="logo">GAMELANG</a>
@@ -166,6 +133,9 @@
     </div>
 
   </footer>
-  
+
+  <script src="./assets/js/index.js"></script>
+
 </body>
+
 </html>
