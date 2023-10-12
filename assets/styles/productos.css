@@ -130,3 +130,75 @@ body {
   .checkbox-label {
     color: white;
   }
+
+
+
+  /* Estilos generales del footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos del lado izquierdo del footer */
+.footer-left {
+  flex: 3; 
+  
+}
+
+.footer-left a {
+  text-decoration: none;
+}
+
+.footer-left img {
+  width: 150px; 
+}
+
+/* Estilos del lado derecho del footer */
+.footer-right {
+  flex: 1; 
+  
+}
+
+.social-icons {
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px; 
+  font-size: 20px; 
+}
+
+.contact-info {
+  font-size: 14px;
+}
+
+/* Estilos para hacer el footer responsive */
+@media (max-width: 768px) {
+  footer {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .footer-left, .footer-right {
+      flex: auto; 
+  }
+
+  .social-icons {
+      margin-bottom: 10px;
+  }
+
+  .social-icons a {
+      margin-right: 5px;
+  }
+}
+
+
+
+
+
