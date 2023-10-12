@@ -113,7 +113,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    margin-left:5px;
+    margin-left:50px;
   }
 
   .custom-checkbox {
@@ -125,4 +125,8 @@ body {
     .checkbox-container {
       flex-direction: column;
     }
+  }
+
+  .checkbox-label {
+    color: white;
   }
