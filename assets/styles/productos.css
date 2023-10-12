@@ -120,7 +120,7 @@ body {
     margin-right: 10px;
   }
 
-  /* Utiliza media queries para ajustar el diseño en pantallas más pequeñas */
+  
   @media screen and (max-width: 768px) {
     .checkbox-container {
       flex-direction: column;
@@ -130,7 +130,6 @@ body {
   .checkbox-label {
     color: white;
   }
-
 
 
   /* Estilos generales del footer */
@@ -197,8 +196,3 @@ footer {
       margin-right: 5px;
   }
 }
-
-
-
-
-
