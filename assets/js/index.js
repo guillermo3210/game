@@ -185,6 +185,8 @@ for (categoria of categoriasUnicas) {
       </label>
     </div>
   `;
-}    ubicacion.innerHTML = checkboxes
+}
+    ubicacion.innerHTML = checkboxes
+    console.log(checkboxes)
   })
 }
