@@ -12,7 +12,7 @@
     background-size: cover ;
     display: flex ;
     align-items: center ;
-    min-height: 40vh;
+    min-height: 25vh;
     justify-content: center;
     
  }
@@ -31,16 +31,21 @@
     text-align: center; /* Centra el texto horizontalmente */
   }
 
-
-
  
 /* Estilo para el cuerpo de la página */
 body {
     font-family: Arial, sans-serif;
     background-color: #340909;
-/*     margin: 0;
-    padding: 0;
- */}
+}
+
+
+.body_detalle {
+  font-family: Arial, sans-serif;
+  background-color: #e0d9d9;
+  min-height: 70vh;
+}
+
+
 
 /* Estilo para el contenedor del catálogo */
 .catalogo {
@@ -140,6 +145,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 15vh;
 }
 
 /* Estilos del lado izquierdo del footer */
@@ -195,4 +201,22 @@ footer {
   .social-icons a {
       margin-right: 5px;
   }
+}
+
+.contenedor_imagen_detalle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen_detalle {
+  width: 20%; /* Esto hará que la imagen ocupe el ancho completo de su contenedor */
+  height:auto; /* Esto permite que la altura se ajuste automáticamente para mantener la proporción */
+}
+
+.descripcion {
+  text-align: center; /* Alinea el texto al centro */
+  margin-top: 20px; /* Agrega un espacio entre la imagen y el texto */
+  padding: 35px;
+  
 }

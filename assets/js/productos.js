@@ -1,7 +1,9 @@
 // let urlApi = "https://www.freetogame.com/api/games"
 let datosObtenidos = {}
+let datosObtenidos1 = {}
 let tarjetasContenedor = document.querySelector("#contenedor_tarjetas")
 let chekboxesContenedor = document.querySelector("#contenedor-checkboxes")
+let detalleContenedor = document.querySelector("#contenedor_detalle")
 
 
 // const url = 'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc';
@@ -11,6 +13,8 @@ let chekboxesContenedor = document.querySelector("#contenedor-checkboxes")
 
 const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical';
 
+const urldet = 'https://free-to-play-games-database.p.rapidapi.com/api/game?id=';
+
 const options = {
   method: 'GET',
   headers: {
@@ -19,7 +23,29 @@ const options = {
   }
 };
 
-traerDatos(url, options)
+
+if (document.title == "Index" || document.title == "Upcoming_Events" || document.title == "Past_Events") {
+
+  crearMostrarCheckboxes(datosObtenidos.events, chekboxesContenedor)
+
+  arregloEventosBase = crearArregloEventosBase(datosObtenidos)
+
+  crearMostrarTarjetas(arregloEventosBase, tarjetasContenedor);
+
+} else if (document.title == "Details") {
+  mostrarDetails();
+} else if (document.title == "Stats") {
+  generaCamposCalculados(datosObtenidos);
+
+}
+
+
+if (document.title == "productos") {
+  traerDatos(url, options)
+}
+else if (document.title == "detalle") {
+  traerDatosDetalle(urldet, options);
+}
 
 
 function traerDatos(url, opcion) {
@@ -29,7 +55,6 @@ function traerDatos(url, opcion) {
     .then(response => response.json())
     .then(datosApi => {
       datosObtenidos = datosApi
-      // console.log(datosObtenidos)
 
       crearMostrarCheckboxes(datosObtenidos, chekboxesContenedor)
 
@@ -40,36 +65,9 @@ function traerDatos(url, opcion) {
 }
 
 
-/* GET https://api.rawg.io/api/platforms?key=YOUR_API_KEY
-GET https://api.rawg.io/api/games?key=YOUR_API_KEY&dates=2019-09-01,2019-09-30&platforms=18,1,7
-api key = 29852ebb0f7c4fed9e04e1b5c9b56e12 
-*/
-
-/* const url1 = 'https://api.rawg.io/api/platforms?key=29852ebb0f7c4fed9e04e1b5c9b56e12'
-
-traerDatos1(url1)
-
-function traerDatos1(url1) {
-  // Obtener datos desde la api (url) 
-  // Procesar segun que pagina este activada
-  fetch(url1)
-    .then(response => response.json())
-    .then(datosApi => {
-      datosObtenidos = datosApi
-      // console.log(datosObtenidos)
-      //  crearMostrarTarjetas(datosObtenidos, tarjetasContenedor);
-
-    })
-    .catch(error => console.log(error))
-}
-
- */
-
 function crearMostrarTarjetas(arregloJuegos, ubicacion) {
 
   let tarjetas = ""
-
-  // console.log(arregloJuegos)
 
   arregloJuegos.forEach(juego => {
     tarjetas += `<div class="juego">
@@ -78,8 +76,10 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
     <p class="genero">Genero : ${juego.genre}</p>
     <p class="precio">$19.99</p>
 
-    <a href="${juego.game_url}" class="boton">Más Detalles</a>
+    <a href="../../detalle.html?id=${juego.id}" class="boton">Más Detalles</a>
+
     </div>`
+
 
   }) //aca termina el forEach
 
@@ -87,6 +87,57 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
 
 }
 
+
+function traerDatosDetalle(urldet, opcion) {
+  const queryString = location.search
+  const params = new URLSearchParams(queryString)
+  const id = params.get("id")
+
+  fetch(urldet + id, opcion)
+    .then(response => response.json())
+    .then(datosApi => {
+      datosDetalle = datosApi
+      console.log(datosDetalle)
+
+      /*       <div class="contenedor_imagen_detalle">
+            <!-- ** aca va el grafico del Juegos -->
+            <img src="./assets/img/fortnite-2982970.jpg" class="imagen_detalle" alt="aca va el nombre">
+        </div>
+      
+      <div class="descripcion">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia aliquam mauris, a varius elit faucibus at. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quae qui ipsam, nam dolores architecto ea, possimus nesciunt corrupti amet vitae eum omnis ipsa enim magnam perspiciatis repellat sint excepturi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur quam sunt maiores autem laborum natus quod recusandae accusamus sint aperiam. Blanditiis, dignissimos praesentium facilis eaque magni vitae accusantium! Eaque, aspernatur!</p>
+      </div>        
+       */
+
+/*       console.log(datosDetalle.screenshots)
+      datosDetalle.screenshots.forEach(function (screenshot) {
+        console.log(screenshot.image); // Esto imprimirá las URL de las imágenes en la consola
+
+      }); */      
+
+
+      crearMostrarDetalleJuego(datosDetalle, detalleContenedor);
+
+    })
+    .catch(error => console.log(error))
+}
+
+
+function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
+
+  let detalle = ""
+
+  detalle=` <div class="contenedor_imagen_detalle">
+    <img src="${detalleJuego.thumbnail}" class="imagen_detalle" alt="">
+</div>
+
+<div class="descripcion">
+<p>${detalleJuego.description}</p>
+</div>`        
+
+  ubicacion.innerHTML = detalle
+
+}
 
 function seleccionarNumerosAlAzar() {
   const numerosDisponibles = Array.from({ length: 81 }, (_, i) => i + 1); // Crear un arreglo con los números del 1 al 81
@@ -123,8 +174,6 @@ if (divChecks) {
 }
 
 function filtroCruzado() {
-
-  console.log(datosObtenidos)
 
   let filtradoPorTexto = filtrarPorTexto(datosObtenidos, inputTexto.value)
   let filtradoPorTextoYCheckboxes = filtrarPorCategoria(filtradoPorTexto)
@@ -164,7 +213,6 @@ function crearMostrarCheckboxes(arregloEventos, ubicacion) {
 
   let categoriasUnicas = []
 
-  console.log(arregloEventos)
   let soloCategorias = arregloEventos.map(evento => evento.genre)
 
   soloCategorias.forEach(categoria => {
@@ -172,12 +220,10 @@ function crearMostrarCheckboxes(arregloEventos, ubicacion) {
       categoriasUnicas.push(categoria)
     }
 
-console.log(categoriasUnicas)
 
-
-let checkboxes = "";
-for (categoria of categoriasUnicas) {
-  checkboxes += `
+    let checkboxes = "";
+    for (categoria of categoriasUnicas) {
+      checkboxes += `
     <div class="checkbox-container">
       <input value="${categoria}" class="custom-checkbox" type="checkbox" id="${categoria}">
       <label class="checkbox-label" for="${categoria}">
@@ -185,8 +231,8 @@ for (categoria of categoriasUnicas) {
       </label>
     </div>
   `;
-}
+    }
     ubicacion.innerHTML = checkboxes
-    console.log(checkboxes)
+
   })
 }
