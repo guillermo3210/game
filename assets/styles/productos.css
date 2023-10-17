@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* outline: 1px solid red;      */
+     /* outline: 1px solid red;       */
 }
 
 .header {
@@ -210,7 +210,7 @@ footer {
 }
 
 .imagen_detalle {
-  width: 20%; /* Esto hará que la imagen ocupe el ancho completo de su contenedor */
+  width: 50rem; /* Esto hará que la imagen ocupe el ancho completo de su contenedor */
   height:auto; /* Esto permite que la altura se ajuste automáticamente para mantener la proporción */
 }
 
@@ -219,4 +219,19 @@ footer {
   margin-top: 20px; /* Agrega un espacio entre la imagen y el texto */
   padding: 35px;
   
+}
+
+.contenedor_detalle_imagenes_adicionales {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+/* Estilo para la imagen del juego */
+.imagen_adicional{
+  width: 25rem;
+  /* height: auto; */
+  height: auto; 
+  object-fit: cover;    
 }

@@ -4,7 +4,7 @@ let datosObtenidos1 = {}
 let tarjetasContenedor = document.querySelector("#contenedor_tarjetas")
 let chekboxesContenedor = document.querySelector("#contenedor-checkboxes")
 let detalleContenedor = document.querySelector("#contenedor_detalle")
-
+let detalleImagenesAdicionales = document.querySelector("#contenedor_detalle_imagenes_adicionales")
 
 // const url = 'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc';
 // const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
@@ -109,14 +109,15 @@ function traerDatosDetalle(urldet, opcion) {
       </div>        
        */
 
-/*       console.log(datosDetalle.screenshots)
-      datosDetalle.screenshots.forEach(function (screenshot) {
-        console.log(screenshot.image); // Esto imprimirá las URL de las imágenes en la consola
-
-      }); */      
+      /*       console.log(datosDetalle.screenshots)
+            datosDetalle.screenshots.forEach(function (screenshot) {
+              console.log(screenshot.image); // Esto imprimirá las URL de las imágenes en la consola
+      
+            }); */
 
 
       crearMostrarDetalleJuego(datosDetalle, detalleContenedor);
+      crearMostrarImagenesAdicionales(datosDetalle, detalleImagenesAdicionales);
 
     })
     .catch(error => console.log(error))
@@ -127,20 +128,67 @@ function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
 
   let detalle = ""
 
-  detalle=` <div class="contenedor_imagen_detalle">
+  let minimumSystemRequirements = detalleJuego.minimum_system_requirements;
+
+  // Accediendo a propiedades específicas dentro de minimum_system_requirements
+  let os        = minimumSystemRequirements.os;
+  let processor = minimumSystemRequirements.processor;
+  let memory    = minimumSystemRequirements.memory;
+  let graphics  = minimumSystemRequirements.graphics;
+  let storage   = minimumSystemRequirements.storage;
+
+
+
+  detalle = ` <div class="contenedor_imagen_detalle">
     <img src="${detalleJuego.thumbnail}" class="imagen_detalle" alt="">
 </div>
 
 <div class="descripcion">
 <p>${detalleJuego.description}</p>
-</div>`        
+</div>
+
+<div class="system-requirements-container">
+<h2 class="system-requirements-title">Minimum System Requirements:</h2>
+<ul class="system-requirements-list">
+    <li><strong>OS:</strong>${minimumSystemRequirements.os}</li>
+    <li><strong>Processor:</strong>${minimumSystemRequirements.processor}</li>
+    <li><strong>Memory:</strong>${minimumSystemRequirements.memory}</li>
+    <li><strong>Graphics:</strong>${minimumSystemRequirements.graphics}</li>
+    <li><strong>Storage:</strong>${minimumSystemRequirements.storage}</li>
+</ul>
+</div>
+`
 
   ubicacion.innerHTML = detalle
 
 }
 
+
+function crearMostrarImagenesAdicionales(detalleJuego, ubicacion) {
+  console.log(detalleJuego)
+
+let detalle = ""
+
+  detalleJuego.screenshots.forEach(imagen => {
+    detalle += `<div class="imagen_adicional">
+       <img src="${imagen.image}" alt="Juego 1">
+        </div>`
+
+  }) //aca termina el forEach
+
+  ubicacion.innerHTML = detalle
+
+}
+
+
 function seleccionarNumerosAlAzar() {
-  const numerosDisponibles = Array.from({ length: 81 }, (_, i) => i + 1); // Crear un arreglo con los números del 1 al 81
+
+const numerosDisponibles = [];
+for (let i = 1; i <= 81; i++) {
+  numerosDisponibles.push(i);
+}
+
+
   const numerosSeleccionados = [];
 
   while (numerosSeleccionados.length < 6) {
@@ -224,12 +272,12 @@ function crearMostrarCheckboxes(arregloEventos, ubicacion) {
     let checkboxes = "";
     for (categoria of categoriasUnicas) {
       checkboxes += `
-    <div class="checkbox-container">
+    <div class="checkbox-container" >
       <input value="${categoria}" class="custom-checkbox" type="checkbox" id="${categoria}">
-      <label class="checkbox-label" for="${categoria}">
-        ${categoria}
-      </label>
-    </div>
+        <label class="checkbox-label" for="${categoria}">
+          ${categoria}
+        </label>
+      </div>
   `;
     }
     ubicacion.innerHTML = checkboxes
